@@ -1,51 +1,55 @@
-console.log("i am connected")
+// console.log("i am connected")
     const searchField = document.getElementById('search-field')
-    // document.getElementById('error-message').style.display = 'none';
-    document.getElementById('spinner').style.display = 'none';
+    const spinner = document.getElementById('spinner')
     const searchResult = document.getElementById('search-result');
     const bookDetail = document.getElementById('book-detail')
     const totalSearchResult = document.getElementById('total-search-result')
     const errorMessage = document.getElementById('error-message')
     
+    spinner.style.display = 'none';
  
 //Searching all the books using arrow function
 const searchBooks = () => {
      spinner.style.display = "block"
-    console.log("button clicked")
+    // console.log("button clicked")
     searchResult.textContent = '';
     totalSearchResult.innerText = ''
-    // const noResult = document.getElementById('no-result');// ken jani na
-        const searchText = searchField.value
-        console.log(searchText)
-        searchField.value = ""
+    const searchText = searchField.value
+    // console.log(searchText)
+    searchField.value = ""
 
-    if (searchText === '') {
-        // document.getElementById('error-message').style.display = 'none';
+    //Using === sign 
+    if (searchText === '') {    
         spinner.style.display = 'none'
         searchResult.textContent = '';
         totalSearchResult.innerText = ""
-        console.log("Empty String")
-        errorMessage.innerText = "Please write a book name"
-  
+        // console.log("Empty String")
+        errorMessage.innerText = "Please write a book name" 
     }
     else {
         errorMessage.innerText = ""
-        
-        fetch(`http://openlibrary.org/search.json?q=${searchText}`)
+        //using https other wise not working in netlify
+        fetch(`https://openlibrary.org/search.json?q=${searchText}`)
         .then(res => res.json())
         .then(data => {
             spinner.style.display = "none"
-            console.log(data.numFound)
-            displayBooks(data.docs,data.numFound)
+            // console.log(data.numFound)
+            if (data.numFound !== 0) {
+                displayBooks(data.docs,data.numFound)
+            }
+            else {
+                totalSearchResult.innerHTML = "<h2>Sorry No Data Found<h2>"
+            }
+            
         })
+        .catch(error => console.log(error))
     }
 
 }
 const displayBooks = (books,resultsNumber) =>{
-
     totalSearchResult.innerHTML = `<h3>Total ${resultsNumber} Search Results Found <h3>`
     searchResult.textContent = '';
-
+    errorMessage.innerText = ''
     // here using for each function to iterate
     books.forEach((book,index)=> {
        
