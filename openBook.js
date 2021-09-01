@@ -1,28 +1,47 @@
 console.log("i am connected")
     const searchField = document.getElementById('search-field')
-    document.getElementById('error-message').style.display = 'none';
+    // document.getElementById('error-message').style.display = 'none';
     document.getElementById('spinner').style.display = 'none';
     const searchResult = document.getElementById('search-result');
     const bookDetail = document.getElementById('book-detail')
+    const totalSearchResult = document.getElementById('total-search-result')
+    const errorMessage = document.getElementById('error-message')
+    
     
 //Searching all the books using arrow function
     const searchBooks = () => {
     // console.log("button clicked")
-    const noResult = document.getElementById('no-result');// ken jani na
+    // const noResult = document.getElementById('no-result');// ken jani na
     const searchText = searchField.value
-    console.log(searchText)
-    searchField.value = ""
-    fetch(`http://openlibrary.org/search.json?q=${searchText}`)
+        searchField.value = ""
+
+    if (searchText === '') {
+        // document.getElementById('error-message').style.display = 'none';
+        searchResult.textContent = '';
+        totalSearchResult.innerText = ""
+        console.log("Empty String")
+        errorMessage.innerText = "Please write a book name"
+        // const p = document.createElement('p');
+        // noResult.textContent = ''
+        // p.style.color = 'red'
+        // p.innerText = "Please write a book name"
+        // noResult.appendChild(p)
+    }
+    else {
+        errorMessage.innerText = ""
+        fetch(`http://openlibrary.org/search.json?q=${searchText}`)
         .then(res => res.json())
         .then(data => {
             console.log(data.numFound)
             displayBooks(data.docs,data.numFound)
         })
+    }
+
 }
 const displayBooks = (books,number) =>{
     console.log(number)
     const searchResult = document.getElementById('search-result')
-    const totalSearchResult = document.getElementById('total-search-result')
+    // const totalSearchResult = document.getElementById('total-search-result')
     totalSearchResult.innerHTML = `<h3>Total Search Results Found ${number}<h3>` 
     searchResult.textContent = '';
 
