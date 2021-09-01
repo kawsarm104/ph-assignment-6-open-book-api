@@ -3,10 +3,10 @@ console.log("i am connected")
     document.getElementById('error-message').style.display = 'none';
     document.getElementById('spinner').style.display = 'none';
     const searchResult = document.getElementById('search-result');
-const bookDetail = document.getElementById('book-detail')
+    const bookDetail = document.getElementById('book-detail')
     
 //Searching all the books using arrow function
-    const searchBook = () => {
+    const searchBooks = () => {
     // console.log("button clicked")
     const noResult = document.getElementById('no-result');// ken jani na
     const searchText = searchField.value
@@ -14,30 +14,33 @@ const bookDetail = document.getElementById('book-detail')
     searchField.value = ""
     fetch(`http://openlibrary.org/search.json?q=${searchText}`)
         .then(res => res.json())
-        .then(data => displayBooks(data.docs))
+        .then(data => {
+            console.log(data.numFound)
+            displayBooks(data.docs,data.numFound)
+        })
 }
-const displayBooks = books =>{
-    // console.log(books)
+const displayBooks = (books,number) =>{
+    console.log(number)
     const searchResult = document.getElementById('search-result')
     const totalSearchResult = document.getElementById('total-search-result')
+    totalSearchResult.innerHTML = `<h3>Total Search Results Found ${number}<h3>` 
     searchResult.textContent = '';
+
     // here using for each function to iterate
     books.forEach((book,index)=> {
        
-        console.log(book)
-        console.log(index)
-    totalSearchResult.innerHTML = `<h3>Total Search Results Found ${index+1}<h3>` 
     const div = document.createElement('div')
     div.classList.add('col');
     div.innerHTML = `
     <div class="card h-100">
     <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="card-img-top" alt="book image">
         <div class="card-body">
-            <h5 class="card-title">${book.title}</h5>
-            <p class="card-text">${book.author_name}</p>
+            <h3 class="card-title">Title: ${book.title}</h3>
+            <p class="card-text">Author: ${book.author_name}</p>
+            <p class="card-text">Publisher: ${book.publisher}</p>
         </div>
         <div class="card-footer">
-        <small class="text-muted">${book.first_publish_year}</small>
+        <small class="text-muted"> First Publish in: ${book.first_publish_year}</small>
         </div>
     </div>
     `
