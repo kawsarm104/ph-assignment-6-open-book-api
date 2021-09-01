@@ -26,11 +26,7 @@ const searchBooks = () => {
         totalSearchResult.innerText = ""
         console.log("Empty String")
         errorMessage.innerText = "Please write a book name"
-        // const p = document.createElement('p');
-        // noResult.textContent = ''
-        // p.style.color = 'red'
-        // p.innerText = "Please write a book name"
-        // noResult.appendChild(p)
+  
     }
     else {
         errorMessage.innerText = ""
@@ -46,10 +42,7 @@ const searchBooks = () => {
 
 }
 const displayBooks = (books,resultsNumber) =>{
-    // console.log(number)
-    console.log("ssearch value",searchField.value)
-    // const searchResult = document.getElementById('search-result')
-    // const totalSearchResult = document.getElementById('total-search-result')
+
     totalSearchResult.innerHTML = `<h3>Total ${resultsNumber} Search Results Found <h3>`
     searchResult.textContent = '';
 
@@ -75,61 +68,3 @@ const displayBooks = (books,resultsNumber) =>{
    });
 }
 
-// showBookDetail = (data) => {
-//     // const bookName = document.getElementById("book-name")
-//     // const bookName = document.getElementById("author-name")
-//     // const bookName = document.getElementById("first-publish")
-//     // const bookName = document.getElementById("publisher-name")
-//     document.getElementById("book-name").innerText = data.docs[0].title
-//     document.getElementById("author-name").innerText = data.docs[0].author_name
-//     document.getElementById("first-publish").innerText = data.docs[0].first_publish_year
-//     document.getElementById("publisher-name").innerText = data.docs[0].publisher
-//     document.getElementById("publisher-name").innerHTML =
-//         `<img src="https://covers.openlibrary.org/b/id/{cover_i}-M.jpg" alt="">`
-//             console.log(data.docs[0].title)
-    
-//     } 
-/*
-const searchBook = () => {
-    onst noResult = document.getElementById('no-result');
-    const searchText = searchField.value
-    // console.log(searchText)
-    // searchField.value = ""
-    // if (searchText == '') {
-    //     document.getElementById('error-message').style.display = 'none';
-    //     searchResult.textContent = '';
-    //     console.log("Empty String")
-    //     const p = document.createElement('p');
-    //     noResult.textContent = ''
-    //     p.style.color = 'red'
-    //     p.innerText = "Please write a book name"
-    //     noResult.appendChild(p)
-    // }
-    console.log(searchText)
-    fetch(`http://openlibrary.org/search.json?q=${searchText}`)
-        .then(res => res.json())
-        .then(data => console.log(data.docs[0].title))
-
-    // else {
-    //     // noResult.textContent = ''
-    //     document.getElementById('spinner').style.display = 'block';
-    //     fetch(`http://openlibrary.org/search.json?q=${searchText}`)
-    //         // console.log(searchText)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             document.getElementById('spinner').style.display = 'none';
-    //             document.getElementById('error-message').style.display = 'none';
-    //             console.log(data.docs[0].title)
-    //             const bookName = document.getElementById("book-name")
-    //             console.log(data.docs[0].title)
-                 
-    //             bookName.innerText = `
-
-    //             `
-            
-    //         })
-
-    // }
-    
-}
-*/
