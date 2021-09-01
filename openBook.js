@@ -7,16 +7,21 @@ console.log("i am connected")
     const totalSearchResult = document.getElementById('total-search-result')
     const errorMessage = document.getElementById('error-message')
     
-    
+ 
 //Searching all the books using arrow function
-    const searchBooks = () => {
-    // console.log("button clicked")
+const searchBooks = () => {
+     spinner.style.display = "block"
+    console.log("button clicked")
+    searchResult.textContent = '';
+    totalSearchResult.innerText = ''
     // const noResult = document.getElementById('no-result');// ken jani na
-    const searchText = searchField.value
+        const searchText = searchField.value
+        console.log(searchText)
         searchField.value = ""
 
     if (searchText === '') {
         // document.getElementById('error-message').style.display = 'none';
+        spinner.style.display = 'none'
         searchResult.textContent = '';
         totalSearchResult.innerText = ""
         console.log("Empty String")
@@ -29,20 +34,23 @@ console.log("i am connected")
     }
     else {
         errorMessage.innerText = ""
+        
         fetch(`http://openlibrary.org/search.json?q=${searchText}`)
         .then(res => res.json())
         .then(data => {
+            spinner.style.display = "none"
             console.log(data.numFound)
             displayBooks(data.docs,data.numFound)
         })
     }
 
 }
-const displayBooks = (books,number) =>{
-    console.log(number)
-    const searchResult = document.getElementById('search-result')
+const displayBooks = (books,resultsNumber) =>{
+    // console.log(number)
+    console.log("ssearch value",searchField.value)
+    // const searchResult = document.getElementById('search-result')
     // const totalSearchResult = document.getElementById('total-search-result')
-    totalSearchResult.innerHTML = `<h3>Total Search Results Found ${number}<h3>` 
+    totalSearchResult.innerHTML = `<h3>Total ${resultsNumber} Search Results Found <h3>`
     searchResult.textContent = '';
 
     // here using for each function to iterate
