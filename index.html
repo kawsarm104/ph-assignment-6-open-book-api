@@ -1,46 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Open book</title>
-     <!-- bootstrap css 
+    <!-- bootstrap css 
      -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
-<body>
-        <h2 class="text-center m-4 text-success">Enter Book Name</h2>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+  <style>
+    .book-details {
+      background-color: aqua;
+      height: 200px;
+    }
+  </style>
+  <body>
+    <h2 class="text-center m-4 text-success">Enter Book Name</h2>
     <div>
-        <div class="input-group mb-3 w-50 m-auto">
-        <input type="text" id="search-field" class="form-control" placeholder="Search the food" aria-label="Search the food"
-            aria-describedby="button-addon2">
-        <button class="btn btn-outline-dark" onclick="searchBook()" type="button" id="button-search">Search</button>
+      <div class="input-group mb-3 w-50 m-auto">
+        <input
+          type="text"
+          id="search-field"
+          class="form-control"
+          placeholder="Search the food"
+          aria-label="Search the food"
+          aria-describedby="button-addon2"
+        />
+        <button
+          class="btn btn-outline-dark"
+          onclick="searchBook()"
+          type="button"
+          id="button-search"
+        >
+          Search
+        </button>
+      </div>
     </div>
-    </div>
+     <div id="total-search-result"></div>
     <!-- Error message  -->
     <div>
-        <p id="error-message" class=" text-danger text-center">Sorry, Results not found</p>
+      <p id="error-message" class="text-danger text-center">
+        Sorry, Results not found
+      </p>
     </div>
     <!-- spinner  -->
     <div class="d-flex justify-content-center">
-    <div class="spinner-border text-info" role="status" id="spinner">
+      <div class="spinner-border text-info" role="status" id="spinner">
         <span class="visually-hidden">Loading...</span>
+      </div>
     </div>
-</div>
+    <!-- <div id="book-detail" class="book-details text-center">
+      <p>Book Name: <span id="book-name"></span></p>
+      <p>Author Name: <span id="author-name"></span></p>
+      <p>First Publish: <span id="first-publish"></span></p>
+      <p>Publisher Name: <span id="publisher-name"></span></p>
+      <p id="book-image"></p>
+    </div> -->
 
-        <!-- single book details -->
-        <div id="no-result" class=" w-50 mx-auto">
-        </div>
-
+    <!-- single book details -->
+    <div id="no-result" class="w-50 mx-auto"></div>
     <!-- book search resul  -->
-    <div id="search-result" class="row row-cols-1 row-cols-md-4 g-4">
- 
+    <div id="search-result" class="row row-cols-1 row-cols-md-4 g-4" >
+        
     </div>
 
-
-    
     <script src="openBook.js"></script>
-</body>
+  </body>
 </html>
