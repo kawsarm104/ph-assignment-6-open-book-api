@@ -46,18 +46,17 @@ const searchBooks = () => {
     }
 
 }
-const displayBooks = (books,resultsNumber) =>{
+const displayBooks = (bookss,resultsNumber) =>{
     totalSearchResult.innerHTML = `<h3>Total ${resultsNumber} Search Results Found <h3>`
     searchResult.textContent = '';
     errorMessage.innerText = ''
+
+    const books = bookss.filter(item => item.cover_i !== undefined && item.publisher !== undefined && item.publisher !== undefined && item.first_publish_year !== undefined);
     
     // here using for each function to iterate also using slice to show less data
-    books.slice(0,10).forEach((book, index) => {
+    books.slice(0,10).forEach((book) => {
         
-        // if (book.cover_i === '' || book.title == '' || book.author_name === ''  || book.publisher === '' || book.first_publish_year === ''){
-        //     continue;   .slice(0,5)
-        // }
-       
+    // book.filter (forEach => each)
     const div = document.createElement('div')
     div.classList.add('col');
     div.innerHTML = `
