@@ -50,8 +50,13 @@ const displayBooks = (books,resultsNumber) =>{
     totalSearchResult.innerHTML = `<h3>Total ${resultsNumber} Search Results Found <h3>`
     searchResult.textContent = '';
     errorMessage.innerText = ''
-    // here using for each function to iterate
-    books.forEach((book,index)=> {
+    
+    // here using for each function to iterate also using slice to show less data
+    books.slice(0,10).forEach((book, index) => {
+        
+        // if (book.cover_i === '' || book.title == '' || book.author_name === ''  || book.publisher === '' || book.first_publish_year === ''){
+        //     continue;   .slice(0,5)
+        // }
        
     const div = document.createElement('div')
     div.classList.add('col');
